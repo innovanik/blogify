@@ -1,0 +1,49 @@
+spring:
+  main:
+    banner-mode: off
+    web-application-type: reactive
+  application:
+    name: ${name}
+#  profiles:
+#    group:
+#      local-emb:
+#      - local
+#      - embedded
+  config:
+    import:
+    - classpath:META-INF/core.config.yaml
+#  aop:
+#    auto: true
+#    proxy-target-class: true
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: stg
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod

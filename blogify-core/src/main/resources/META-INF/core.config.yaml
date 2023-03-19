@@ -1,0 +1,81 @@
+################################################
+# Config of framework
+################################################
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  jta:
+    enabled: false
+  application:
+    admin:
+      enabled: false
+  jmx:
+    enabled: false
+  messages:
+    encoding: "@project.build.sourceEncoding@"
+    basename: messages/message, META-INF/messages/*.properties, **/ValidationMessages*.properties
+    use-code-as-default-message: true
+  web:
+    locale: ko_KR
+  thymeleaf:
+    encoding: "@project.build.sourceEncoding@"
+  h2:
+    console:
+      enabled: false
+server:
+  servlet:
+    encoding:
+      charset: "@project.build.sourceEncoding@"
+logging:
+  config: classpath:META-INF/framework.logback.xml
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  freemarker:
+    cache: false
+  messages:
+    cache-duration: -1
+  thymeleaf:
+    cache: false
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  messages:
+    cache-duration: 86400 # 1day
+  thymeleaf:
+    cache: true
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: stg
+  messages:
+    cache-duration: 86400 # 1day
+  thymeleaf:
+    cache: true
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  messages:
+    cache-duration: 86400 # 1day
+  thymeleaf:
+    cache: true

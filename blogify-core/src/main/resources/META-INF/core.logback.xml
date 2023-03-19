@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<configuration>
+	<!-- Set spring properties -->
+	<springProperty scope="context" name="APP_NAME" source="spring.application.name"/>
+	<springProperty scope="context" name="ACTIVE_PROFILE" source="spring.profiles.active"/>
+	<timestamp key="CURRENT_DATETIME" datePattern="yyyyMMddHHmmss"/>
+
+	<jmxConfigurator />
+
+	<logger name="blogify" level="WARN"/>
+	<!-- JDBC -->
+	<logger name="jdbc.sqlonly" level="OFF"/>
+	<logger name="jdbc.sqltiming" level="WARN"/>
+	<logger name="jdbc.audit" level="OFF"/>
+	<logger name="jdbc.resultset" level="OFF"/>
+	<logger name="jdbc.resultsettable" level="WARN"/>
+	<logger name="jdbc.connection" level="WARN"/>
+	<!-- Spring framework -->
+	<logger name="org.springframework.boot" level="WARN"/>
+	<logger name="org.springframework.core" level="WARN"/>
+	<logger name="org.springframework.beans" level="WARN"/>
+	<logger name="org.springframework.context" level="WARN"/>
+	<logger name="org.springframework.web" level="WARN"/>
+	<logger name="org.springframework.security" level="WARN"/>
+
+	<if condition='p("ACTIVE_PROFILE").contains("test")'>
+		<then>
+			<include resource="logback/test.xml"/>
+		</then>
+		<else>
+			<if condition='p("ACTIVE_PROFILE").contains("local")'>
+				<then>
+					<include resource="logback/local.xml"/>
+				</then>
+				<else>
+					<if condition='p("ACTIVE_PROFILE").contains("dev")'>
+						<then>
+							<include resource="logback/dev.xml"/>
+						</then>
+						<else>
+							<if condition='p("ACTIVE_PROFILE").contains("stg")'>
+								<then>
+									<include resource="logback/stg.xml"/>
+								</then>
+								<else>
+									<if condition='p("ACTIVE_PROFILE").contains("prod")'>
+										<then>
+											<include resource="logback/prod.xml"/>
+										</then>
+									</if>
+								</else>
+							</if>
+						</else>
+					</if>
+				</else>
+			</if>
+		</else>
+	</if>
+
+	<!-- Set pattern -->
+	<property name="LOG_PREFIX_PATTERN" value="${LOG_PREFIX_PATTERN:-%8X{id:-${PID:-}}}"/>
+	<property name="LOG_LOGGER_PATTERN" value="${LOG_LOGGER_PATTERN:-%-40.40logger{39}}"/>
+	<property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %highlight(${LOG_LEVEL_PATTERN:-%5p}) %clr([${LOG_THREAD_PATTERN:-%15.15t}]){magenta} %clr(${LOG_LOGGER_PATTERN}){cyan} %clr(---){blue} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+	<property name="FILE_LOG_PATTERN" value="${FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} [${LOG_THREAD_PATTERN:-%t}] ${LOG_LOGGER_PATTERN} --- %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+	<!-- Set log type -->
+	<property name="CONSOLE_LOG" value="${CONSOLE_LOG:-true}"/>
+	<property name="FILE_LOG" value="${FILE_LOG:-false}"/>
+	<property name="FILE_ASYNC_LOG" value="${FILE_ASYNC_LOG:-false}"/>
+	<property name="LOG_PATH" value="${LOG_PATH:-.}"/>
+	<property name="LOG_FILE" value="${LOG_PATH}/${LOG_FILE:-${APP_NAME}.log}"/>
+	<property name="LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START" value="${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-true}"/>
+	<property name="LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE" value="${LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE:-200MB}"/>
+	<property name="LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP" value="${LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP:-0}"/>
+	<property name="LOGBACK_ROLLINGPOLICY_MAX_HISTORY" value="${LOGBACK_ROLLINGPOLICY_MAX_HISTORY:-7}"/>
+
+	<include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+	<!-- Appender Name: CONSOLE [ch.qos.logback.core.ConsoleAppender] -->
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+	<if condition='p("FILE_LOG").equals("true") || p("FILE_ASYNC_LOG").equals("true")'>
+		<then>
+			<!-- Appender Name: FILE [ch.qos.logback.core.rolling.RollingFileAppender] -->
+			<include resource="org/springframework/boot/logging/logback/file-appender.xml"/>
+			<if condition='p("FILE_ASYNC_LOG").equals("true")'>
+				<then>
+					<appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
+						<appender-ref ref="FILE" />
+					</appender>
+				</then>
+			</if>
+		</then>
+	</if>
+
+	<root level="${ROOT_LEVEL:-INFO}">
+		<if condition='p("CONSOLE_LOG").equals("true")'>
+			<then>
+				<appender-ref ref="CONSOLE"/>
+			</then>
+		</if>
+		<if condition='p("FILE_ASYNC_LOG").equals("true")'>
+			<then>
+				<appender-ref ref="ASYNC_FILE"/>
+			</then>
+			<else>
+				<if condition='p("FILE_LOG").equals("true")'>
+					<then>
+						<appender-ref ref="FILE"/>
+					</then>
+				</if>
+			</else>
+		</if>
+	</root>
+</configuration>

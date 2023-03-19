@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<included>
+	<property name="LOG_DATEFORMAT_PATTERN" value="yyyy-MM-dd HH:mm:ss.SSS"/>
+	<property name="LOG_THREAD_PATTERN" value="%thread"/>
+	<property name="LOG_LOGGER_PATTERN" value="%logger"/>
+	<property name="CONSOLE_LOG" value="false"/>
+	<property name="FILE_LOG" value="true"/>
+	<!-- Set spring properties -->
+<!-- 	<springProperty scope="context" name="LOG_PATH" source="log.path"/> -->
+	<property name="LOG_PATH" value="C:/workspace/logs"/>
+
+	<logger name="com.gmarket.tpm" level="DEBUG"/>
+	<!-- innvanik pivotal spring -->
+	<logger name="innovanik.pivotal.spring" level="INFO"/>
+	<!-- JDBC -->
+	<logger name="jdbc.sqlonly" level="OFF"/>
+	<logger name="jdbc.sqltiming" level="INFO"/>
+	<logger name="jdbc.audit" level="OFF"/>
+	<logger name="jdbc.resultset" level="OFF"/>
+	<logger name="jdbc.resultsettable" level="INFO"/>
+	<logger name="jdbc.connection" level="INFO"/>
+	<!-- spring framework -->
+	<logger name="org.springframework.boot" level="INFO"/>
+	<logger name="org.springframework.core" level="INFO"/>
+	<logger name="org.springframework.beans" level="INFO"/>
+	<logger name="org.springframework.context" level="INFO"/>
+	<logger name="org.springframework.aop" level="INFO"/>
+	<logger name="org.springframework.web" level="INFO"/>
+	<logger name="org.springframework.security" level="INFO"/>
+	<!-- thymeleaf -->
+	<logger name="org.thymeleaf" level="INFO"/>
+</included>

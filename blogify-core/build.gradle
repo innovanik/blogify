@@ -1,0 +1,12 @@
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+dependencies {
+    implementation library.janino
+    implementation library.commons_text
+}
