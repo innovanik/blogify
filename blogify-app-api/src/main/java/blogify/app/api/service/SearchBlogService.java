@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import blogify.app.api.data.SearchBlogData;
 import blogify.app.api.data.SearchBlogResult;
-import blogify.app.api.exception.WebClientExternalResponseException;
+import blogify.core.exception.WebClientExternalResponseException;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 

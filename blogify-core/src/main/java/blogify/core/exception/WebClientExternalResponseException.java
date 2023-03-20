@@ -1,4 +1,4 @@
-package blogify.app.api.exception;
+package blogify.core.exception;
 
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClientException;
