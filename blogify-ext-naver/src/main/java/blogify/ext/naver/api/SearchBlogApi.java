@@ -1,9 +1,12 @@
 package blogify.ext.naver.api;
 
+import java.util.function.Function;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.ClientResponse;
 
 import blogify.ext.naver.NaverClient;
 import lombok.extern.slf4j.Slf4j;
@@ -20,21 +23,17 @@ public class SearchBlogApi {
 	@Autowired
 	private NaverClient client;
 
-	public Mono<String> get(String query, Pageable pageable) {
+	public <T> Mono<T> exchange(String query, Pageable pageable, Function<ClientResponse, ? extends Mono<T>> responseHandler) {
 		log.debug("[Naver] blog - Search: {}, Paging: {}", query, pageable);
 		return client.get()
 						.uri(BLOG, (uriBuilder) -> {
-							uriBuilder.queryParam("query", query);
-							if ( pageable != null ) {
-								uriBuilder
-									.queryParam("sort", getSort(pageable.getSort()))
-									.queryParam("start", getStart(pageable))
-									.queryParam("display", pageable.getPageSize());
-							}
-							return uriBuilder.build();
+							return uriBuilder.queryParam("query", query)
+												.queryParam("sort", getSort(pageable.getSort()))
+												.queryParam("start", getStart(pageable))
+												.queryParam("display", pageable.getPageSize())
+												.build();
 						})
-						.retrieve()
-						.bodyToMono(String.class);
+						.exchangeToMono(responseHandler);
 	}
 
 	private String getSort(Sort sort) {

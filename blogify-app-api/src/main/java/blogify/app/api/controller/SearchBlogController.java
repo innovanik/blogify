@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import blogify.app.api.data.SearchBlogData;
+import blogify.app.api.data.SearchBlogResult;
 import blogify.app.api.service.SearchBlogService;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -22,7 +23,7 @@ public class SearchBlogController {
 
 	@GetMapping("/search/blog")
 	@ResponseBody
-	public Mono<String> get(ServerHttpRequest request, @Valid SearchBlogData data) throws Exception {
+	public Mono<SearchBlogResult> get(ServerHttpRequest request, @Valid SearchBlogData data) throws Exception {
 		log.info("[{}] {} - {}", request.getId(), request.getPath(), data);
 		return searchBlogService.get(data);
 	}

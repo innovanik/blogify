@@ -8,4 +8,5 @@ jar {
 
 dependencies {
     implementation library.janino
+    implementation library.starter_json
 }

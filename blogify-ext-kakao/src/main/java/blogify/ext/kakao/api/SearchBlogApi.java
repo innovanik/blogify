@@ -1,8 +1,11 @@
 package blogify.ext.kakao.api;
 
+import java.util.function.Function;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.ClientResponse;
 
 import blogify.ext.kakao.KakaoClient;
 import lombok.extern.slf4j.Slf4j;
@@ -19,17 +22,14 @@ public class SearchBlogApi {
 	@Autowired
 	private KakaoClient client;
 
-	public Mono<String> get(String query, Pageable pageable) {
+	public <T> Mono<T> exchange(String query, Pageable pageable, Function<ClientResponse, ? extends Mono<T>> responseHandler) {
 		log.debug("[Kakao] blog - Search: {}, Paging: {}", query, pageable);
 		return client.get()
-						.uri(BLOG, (uriBuilder) -> {
-							return uriBuilder.queryParam("query", query)
-												.queryParam("sort", pageable.getSort().stream().findFirst().get().getProperty())
-												.queryParam("page", pageable.getPageNumber())
-												.queryParam("size", pageable.getPageSize())
-												.build();
-						})
-						.retrieve()
-						.bodyToMono(String.class);
+						.uri(BLOG, (uriBuilder) -> uriBuilder.queryParam("query", query)
+																.queryParam("sort", pageable.getSort().stream().findFirst().get().getProperty())
+																.queryParam("page", pageable.getPageNumber())
+																.queryParam("size", pageable.getPageSize())
+																.build())
+						.exchangeToMono(responseHandler);
 	}
 }

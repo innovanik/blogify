@@ -38,15 +38,16 @@ ext {
       janino:                   "org.codehaus.janino:janino",
       
       /* spring framework */
+      web:                      "org.springframework:spring-web",
+      webflux:                  "org.springframework:spring-webflux",
       devtools:                 "org.springframework.boot:spring-boot-devtools",
       configuration_processor:  "org.springframework.boot:spring-boot-configuration-processor",
       starter:                  "org.springframework.boot:spring-boot-starter",
       starter_test:             "org.springframework.boot:spring-boot-starter-test",
       starter_aop:              "org.springframework.boot:spring-boot-starter-aop",
+      starter_json:             "org.springframework.boot:spring-boot-starter-json",
       starter_validation:       "org.springframework.boot:spring-boot-starter-validation",
       starter_webflux:          "org.springframework.boot:spring-boot-starter-webflux",
-      web:                      "org.springframework:spring-web",
-      webflux:                  "org.springframework:spring-webflux",
       data_commons:             "org.springframework.data:spring-data-commons",
       
       /* apache commons */
