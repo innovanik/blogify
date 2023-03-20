@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class WebClientResponseException extends WebClientException {
+public class WebClientExternalResponseException extends WebClientException {
 
 	private static final long serialVersionUID = 3946523554241361716L;
 
@@ -16,19 +16,19 @@ public class WebClientResponseException extends WebClientException {
 
 	private final String responseBody;
 
-	public WebClientResponseException(String msg, ClientResponse response, String responseBody) {
+	public WebClientExternalResponseException(String msg, ClientResponse response, String responseBody) {
 		super(msg);
 		this.response = response;
 		this.responseBody = responseBody;
 	}
 
-	public WebClientResponseException(String msg, Throwable ex, ClientResponse response, String responseBody) {
+	public WebClientExternalResponseException(String msg, Throwable ex, ClientResponse response, String responseBody) {
 		super(msg, ex);
 		this.response = response;
 		this.responseBody = responseBody;
 	}
 
-	public WebClientResponseException(Throwable ex, ClientResponse response, String responseBody) {
+	public WebClientExternalResponseException(Throwable ex, ClientResponse response, String responseBody) {
 		this(ex.getMessage(), ex, response, responseBody);
 	}
 }

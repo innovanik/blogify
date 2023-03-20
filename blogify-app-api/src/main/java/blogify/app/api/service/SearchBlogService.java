@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import blogify.app.api.data.SearchBlogData;
 import blogify.app.api.data.SearchBlogResult;
-import blogify.app.api.exception.WebClientResponseException;
+import blogify.app.api.exception.WebClientExternalResponseException;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
@@ -55,10 +55,10 @@ public class SearchBlogService {
 			try {
 				result = mapper.readValue(body, SearchBlogResult.class);
 			} catch (Exception e) {
-				throw new WebClientResponseException(e, response, body);
+				throw new WebClientExternalResponseException(e, response, body);
 			}
 			if ( response.statusCode().isError() ) {
-				throw new WebClientResponseException(result.getMessage(), response, body);
+				throw new WebClientExternalResponseException(result.getMessage(), response, body);
 			}
 			result.setServer(server);
 			result.setQuery(data.getQuery());
