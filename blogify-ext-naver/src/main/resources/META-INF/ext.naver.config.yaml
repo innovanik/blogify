@@ -1,0 +1,18 @@
+################################################
+# Config of ext.naver
+################################################
+naver:
+  url: https://openapi.naver.com
+  authorization: 
+    -
+      name: X-Naver-Client-Id
+      value: Cir45b5mDLizcAzBQXap
+    -
+      name: X-Naver-Client-Secret
+      value: f9OV_GIXdK
+#    X-Naver-Client-Id: Cir45b5mDLizcAzBQXap
+#    X-Naver-Client-Secret: f9OV_GIXdK
+  timeout:
+    connect: 1000 # 1초
+    read: 3000 # 3초
+    write: 3000 # 3초

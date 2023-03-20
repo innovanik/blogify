@@ -10,16 +10,7 @@
 	<!-- Set spring properties -->
 	<springProperty scope="context" name="LOG_PATH" source="log.path"/>
 
-	<logger name="com.gmarket.tpm" level="INFO"/>
-	<!-- innvanik pivotal spring -->
-	<logger name="innovanik.pivotal.spring" level="WARN"/>
-	<!-- JDBC -->
-	<logger name="jdbc.sqlonly" level="OFF"/>
-	<logger name="jdbc.sqltiming" level="WARN"/>
-	<logger name="jdbc.audit" level="OFF"/>
-	<logger name="jdbc.resultset" level="OFF"/>
-	<logger name="jdbc.resultsettable" level="WARN"/>
-	<logger name="jdbc.connection" level="WARN"/>
+	<logger name="blogify" level="INFO"/>
 	<!-- spring framework -->
 	<logger name="org.springframework.boot" level="WARN"/>
 	<logger name="org.springframework.core" level="WARN"/>
@@ -27,7 +18,7 @@
 	<logger name="org.springframework.context" level="WARN"/>
 	<logger name="org.springframework.aop" level="WARN"/>
 	<logger name="org.springframework.web" level="WARN"/>
-	<logger name="org.springframework.security" level="WARN"/>
-	<!-- thymeleaf -->
-	<logger name="org.thymeleaf" level="INFO"/>
+	<!-- Netty -->
+	<logger name="reactor.netty" level="WARN"/>
+	<logger name="io.netty" level="WARN"/>
 </included>

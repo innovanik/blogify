@@ -1,4 +1,7 @@
 dependencies {
     implementation project(':blogify-core')
+    implementation project(':blogify-ext-kakao')
+    implementation project(':blogify-ext-naver')
+    implementation library.starter_aop
     implementation library.starter_webflux
 }

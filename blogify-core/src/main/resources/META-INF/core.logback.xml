@@ -23,7 +23,9 @@
 	<logger name="org.springframework.beans" level="WARN"/>
 	<logger name="org.springframework.context" level="WARN"/>
 	<logger name="org.springframework.web" level="WARN"/>
-	<logger name="org.springframework.security" level="WARN"/>
+	<!-- Netty -->
+	<logger name="reactor.netty" level="WARN"/>
+	<logger name="io.netty" level="WARN"/>
 
 	<if condition='p("ACTIVE_PROFILE").contains("test")'>
 		<then>

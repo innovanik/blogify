@@ -1,5 +1,5 @@
 ################################################
-# Config of framework
+# Config of core
 ################################################
 spring:
   main:
@@ -12,22 +12,16 @@ spring:
   jmx:
     enabled: false
   messages:
-    encoding: "@project.build.sourceEncoding@"
+    encoding: UTF-8
     basename: messages/message, META-INF/messages/*.properties, **/ValidationMessages*.properties
     use-code-as-default-message: true
   web:
     locale: ko_KR
-  thymeleaf:
-    encoding: "@project.build.sourceEncoding@"
   h2:
     console:
       enabled: false
-server:
-  servlet:
-    encoding:
-      charset: "@project.build.sourceEncoding@"
 logging:
-  config: classpath:META-INF/framework.logback.xml
+  config: classpath:META-INF/core.logback.xml
 
 ---
 

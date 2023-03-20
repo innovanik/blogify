@@ -1,5 +1,5 @@
 include 'blogify-core'
+include 'blogify-ext'
 include 'blogify-ext-kakao'
 include 'blogify-ext-naver'
 include 'blogify-app-api'
-include 'blogify-module'

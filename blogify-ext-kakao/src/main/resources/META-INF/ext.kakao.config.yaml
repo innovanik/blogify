@@ -1,0 +1,10 @@
+################################################
+# Config of ext.kakao
+################################################
+kakao:
+  url: https://dapi.kakao.com
+  authorization: KakaoAK 1f380cfa65a34ca31149b9db3b0f7adc
+  timeout:
+    connect: 1000 # 1초
+    read: 3000 # 3초
+    write: 3000 # 3초

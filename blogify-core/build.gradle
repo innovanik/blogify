@@ -8,5 +8,4 @@ jar {
 
 dependencies {
     implementation library.janino
-    implementation library.commons_text
 }

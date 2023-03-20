@@ -38,6 +38,7 @@ subprojects {
        developmentOnly library.devtools
        annotationProcessor library.configuration_processor
        testImplementation library.starter_test
+       implementation library.commons_text
    }
    
    /* Per default GRADLE stops the build if one single test fails. We want to have all tests executed. */

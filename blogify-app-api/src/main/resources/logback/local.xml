@@ -5,25 +5,17 @@
 	<property name="LOG_DATEFORMAT_PATTERN" value="HH:mm:ss.SSS"/>
 	<property name="LOG_THREAD_PATTERN" value="%35thread"/>
 	<property name="LOG_LOGGER_PATTERN" value="%logger"/>
+<!-- 	<property name="ROOT_LEVEL" value="DEBUG"/> -->
 
-	<logger name="com.gmarket.tpm" level="DEBUG"/>
-	<!-- innvanik pivotal spring -->
-	<logger name="innovanik.pivotal.spring" level="DEBUG"/>
-	<!-- JDBC -->
-	<logger name="jdbc.sqlonly" level="OFF"/>
-	<logger name="jdbc.sqltiming" level="INFO"/>
-	<logger name="jdbc.audit" level="OFF"/>
-	<logger name="jdbc.resultset" level="OFF"/>
-	<logger name="jdbc.resultsettable" level="INFO"/>
-	<logger name="jdbc.connection" level="INFO"/>
+	<logger name="blogify" level="DEBUG"/>
 	<!-- spring framework -->
 	<logger name="org.springframework.boot" level="INFO"/>
 	<logger name="org.springframework.core" level="INFO"/>
 	<logger name="org.springframework.beans" level="INFO"/>
 	<logger name="org.springframework.context" level="INFO"/>
 	<logger name="org.springframework.aop" level="DEBUG"/>
-	<logger name="org.springframework.web" level="INFO"/>
-	<logger name="org.springframework.security" level="INFO"/>
-	<!-- thymeleaf -->
-	<logger name="org.thymeleaf" level="INFO"/>
+	<logger name="org.springframework.web" level="DEBUG"/>
+	<!-- Netty -->
+	<logger name="reactor.netty" level="INFO"/>
+	<logger name="io.netty" level="INFO"/>
 </included>

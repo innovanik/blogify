@@ -1,0 +1,13 @@
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+dependencies {
+    implementation library.starter_validation
+    implementation library.starter_webflux
+    implementation library.data_commons
+}

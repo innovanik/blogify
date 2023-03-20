@@ -3,18 +3,15 @@ spring:
     banner-mode: off
     web-application-type: reactive
   application:
-    name: ${name}
-#  profiles:
-#    group:
-#      local-emb:
-#      - local
-#      - embedded
+    name: blogify-app-api
   config:
     import:
     - classpath:META-INF/core.config.yaml
-#  aop:
-#    auto: true
-#    proxy-target-class: true
+    - classpath:META-INF/ext.kakao.config.yaml
+    - classpath:META-INF/ext.naver.config.yaml
+  aop:
+    auto: true
+    proxy-target-class: true
 server:
   port: 8080
   servlet:
