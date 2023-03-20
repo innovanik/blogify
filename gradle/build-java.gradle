@@ -19,7 +19,7 @@ subprojects {
     apply plugin: 'io.freefair.lombok'
       
    /* Setup UTF-8 for compile AND test compilation*/
-   [ compileJava, compileTestJava ]*.options*.encoding = 'UTF-8'
+   [ compileJava, compileTestJava, javadoc ]*.options*.encoding = 'UTF-8'
 
    sourceCompatibility = '11'
       
@@ -35,10 +35,17 @@ subprojects {
        /* - dependencies 추가 */
        /* ------------------ */
        compileOnly library.starter
+       compileOnly library.starter_validation
+       compileOnly library.starter_webflux
+       compileOnly library.data_commons
+       
        developmentOnly library.devtools
+       
        annotationProcessor library.configuration_processor
-       testImplementation library.starter_test
+       
        implementation library.commons_text
+       
+       testImplementation library.starter_test
    }
    
    /* Per default GRADLE stops the build if one single test fails. We want to have all tests executed. */

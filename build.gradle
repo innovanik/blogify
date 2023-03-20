@@ -15,7 +15,7 @@ plugins {
 }
 
 allprojects {
-	apply from: "${rootProject.projectDir}/gradle/libraries.gradle"
+    apply from: "${rootProject.projectDir}/gradle/libraries.gradle"
 }
 /* -------------------------------- */
 /* - Include other gradle scripts - */
