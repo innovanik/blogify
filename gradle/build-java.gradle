@@ -37,6 +37,8 @@ subprojects {
        compileOnly library.starter
        compileOnly library.starter_validation
        compileOnly library.starter_webflux
+       compileOnly library.starter_jpa
+       compileOnly library.starter_r2dbc
        compileOnly library.data_commons
        
        developmentOnly library.devtools
@@ -47,6 +49,14 @@ subprojects {
        
        testImplementation library.starter_test
        testImplementation library.reactor_test
+   }
+   
+   /* ------------------ */
+   /* - javadoc 추가      */
+   /* ------------------ */
+   javadoc {
+       // without the -quiet option, the build fails
+       options.addStringOption('Xdoclint:none', '-quiet')
    }
    
    /* Per default GRADLE stops the build if one single test fails. We want to have all tests executed. */

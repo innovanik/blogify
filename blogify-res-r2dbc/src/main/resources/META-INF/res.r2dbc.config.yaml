@@ -13,4 +13,4 @@ spring:
   sql:
     init:
       schema-locations:
-      - META-INF/scripts/h2-schema.sql
+      - classpath:META-INF/scripts/h2-schema.sql

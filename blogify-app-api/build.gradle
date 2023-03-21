@@ -6,3 +6,12 @@ dependencies {
     implementation library.starter_aop
     implementation library.starter_webflux
 }
+
+tasks.build.doLast {
+    copy {
+        from "build/libs"
+        include "blogify-app-api-${project.version}.jar"
+        into "${project.rootDir}"
+        rename "blogify-app-api-${project.version}.jar", "api.jar"
+    }
+}

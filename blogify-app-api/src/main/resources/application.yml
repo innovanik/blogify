@@ -4,6 +4,8 @@ spring:
     web-application-type: reactive
   application:
     name: blogify-app-api
+  profiles:
+    active: local
   config:
     import:
     - classpath:META-INF/core.config.yaml
