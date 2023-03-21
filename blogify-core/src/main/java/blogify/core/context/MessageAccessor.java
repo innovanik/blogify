@@ -37,7 +37,11 @@ public final class MessageAccessor {
 		return messageSourceAccessor.getMessage(code, getLocale());
 	}
 
-	public static String getMessage(String code, Object... args) {
+	public static String getMessage(String code, String defaultMessage) {
+		return messageSourceAccessor.getMessage(code, defaultMessage);
+	}
+
+	public static String getMessage(String code, Object[] args) {
 		return messageSourceAccessor.getMessage(code, args, getLocale());
 	}
 
