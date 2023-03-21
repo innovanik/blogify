@@ -18,7 +18,7 @@ public class SearchBlogApi {
 
 	public static final String BEAN_NAME = "naverSearchBlogApi";
 
-	private static final String BLOG = "/v1/search/blog.json";
+	private static final String BLOG = "/v1/search/blogg.json";
 
 	@Autowired
 	private NaverClient client;

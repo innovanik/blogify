@@ -1,0 +1,13 @@
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+dependencies {
+    implementation library.starter_jpa
+    implementation library.starter_r2dbc
+    implementation library.r2dbc_h2
+}

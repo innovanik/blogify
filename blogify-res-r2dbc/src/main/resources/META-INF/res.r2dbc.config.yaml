@@ -1,0 +1,16 @@
+################################################
+# Config of res.r2dbc
+################################################
+spring:
+  h2:
+    console:
+      enabled: false
+  r2dbc:
+    url: r2dbc:h2:mem:///blogdb
+    name: blogdb
+    username: sa
+    password: 
+  sql:
+    init:
+      schema-locations:
+      - META-INF/scripts/h2-schema.sql

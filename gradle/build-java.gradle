@@ -46,6 +46,7 @@ subprojects {
        implementation library.commons_text
        
        testImplementation library.starter_test
+       testImplementation library.reactor_test
    }
    
    /* Per default GRADLE stops the build if one single test fails. We want to have all tests executed. */

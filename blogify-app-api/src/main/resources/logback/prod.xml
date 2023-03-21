@@ -5,6 +5,7 @@
 	<property name="LOG_DATEFORMAT_PATTERN" value="yyyy-MM-dd HH:mm:ss.SSS"/>
 	<property name="LOG_THREAD_PATTERN" value="%thread"/>
 	<property name="LOG_LOGGER_PATTERN" value="%logger"/>
+	<property name="LOG_MDC_PATTERN" value="[%-10X{id:-unknown}]"/>
 	<property name="CONSOLE_LOG" value="false"/>
 	<property name="FILE_LOG" value="true"/>
 	<!-- Set spring properties -->
@@ -18,7 +19,14 @@
 	<logger name="org.springframework.context" level="WARN"/>
 	<logger name="org.springframework.aop" level="WARN"/>
 	<logger name="org.springframework.web" level="WARN"/>
+	<logger name="org.springframework.r2dbc" level="WARN"/>
 	<!-- Netty -->
 	<logger name="reactor.netty" level="WARN"/>
 	<logger name="io.netty" level="WARN"/>
+	<!-- JDBC -->
+	<logger name="jdbc.sqltiming" level="WARN"/>
+	<logger name="jdbc.resultsettable" level="WARN"/>
+	<logger name="jdbc.connection" level="WARN"/>
+	<!-- R2DBC -->
+	<logger name="io.r2dbc" level="WARN"/>
 </included>

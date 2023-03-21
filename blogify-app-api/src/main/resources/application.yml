@@ -4,13 +4,12 @@ spring:
     web-application-type: reactive
   application:
     name: blogify-app-api
-  profiles:
-    default: local
   config:
     import:
     - classpath:META-INF/core.config.yaml
     - classpath:META-INF/ext.kakao.config.yaml
     - classpath:META-INF/ext.naver.config.yaml
+    - classpath:META-INF/res.r2dbc.config.yaml
   aop:
     auto: true
     proxy-target-class: true
@@ -18,6 +17,13 @@ server:
   port: 8080
   servlet:
     context-path: /
+  error:
+    whitelabel:
+      enabled: false
+    include-message: never
+    include-stacktrace: never
+    include-binding-errors: never
+    include-exception: false
 
 ---
 

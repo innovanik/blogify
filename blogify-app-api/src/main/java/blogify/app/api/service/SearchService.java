@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.reactive.function.client.ClientResponse;
 
@@ -13,14 +14,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import blogify.app.api.data.SearchBlogData;
 import blogify.app.api.data.SearchBlogResult;
+import blogify.app.api.data.SearchWordPopularResult;
 import blogify.core.exception.WebClientExternalResponseException;
+import blogify.res.r2dbc.entity.BlogSearchWordEntity;
+import blogify.res.r2dbc.repository.BlogSearchWordRepository;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @Slf4j
 @Service
 @Validated
-public class SearchBlogService {
+public class SearchService {
+
+	@Autowired
+	private ObjectMapper mapper;
 
 	@Autowired
 	@Qualifier(blogify.ext.kakao.api.SearchBlogApi.BEAN_NAME)
@@ -31,9 +38,9 @@ public class SearchBlogService {
 	private blogify.ext.naver.api.SearchBlogApi naverSearchBlogApi;
 
 	@Autowired
-	private ObjectMapper mapper;
+	private BlogSearchWordRepository blogSearchWordRepository;
 
-	public Mono<SearchBlogResult> get(@Valid @NotNull SearchBlogData data) {
+	public Mono<SearchBlogResult> blog(@Valid @NotNull SearchBlogData data) {
 		log.debug("[Search] blog - data: {}", data);
 		return kakaoSearchBlogApi
 				.exchange(data.getQuery(), data.getPageable(), response -> handler("kakao", data, response))
@@ -41,11 +48,17 @@ public class SearchBlogService {
 					log.warn("[Search] blog - error: {}", error.getMessage());
 					return naverSearchBlogApi.exchange(data.getQuery(), data.getPageable(), response -> handler("naver", data, response));
 				})
-				.doOnSuccess(result -> {
-					// TODO DB 저장
-				})
 				.doOnError(error -> {
 					log.error("[Search] blog - error: {}", error.getMessage());
+				})
+				.doFinally(signal -> {
+					switch ( signal ) {
+						case ON_COMPLETE:
+							saveBlogSearchWord(data).subscribe();
+							break;
+						default:
+							break;
+					}
 				});
 	}
 
@@ -65,5 +78,30 @@ public class SearchBlogService {
 			result.setPageable(data.getPageable());
 			return result;
 		});
+	}
+
+	@Transactional
+	public Mono<Void> saveBlogSearchWord(SearchBlogData data) {
+		return blogSearchWordRepository
+				.findByWord(data.getQuery())
+				.defaultIfEmpty(BlogSearchWordEntity.builder()
+													.word(data.getQuery())
+													.cnt(0L)
+													.build())
+				.doOnNext(entity -> entity.setCnt(entity.getCnt() + 1L))
+				.flatMap(blogSearchWordRepository::save)
+				.then();
+	}
+
+	public Mono<SearchWordPopularResult> wordPopular() {
+		return blogSearchWordRepository
+				.findTop10ByOrderByCntDesc()
+				.map(entity -> SearchWordPopularResult.Result.builder().keyword(entity.getWord()).count(entity.getCnt()).build())
+				.collectList()
+				.map(list -> {
+					SearchWordPopularResult result = new SearchWordPopularResult();
+					result.setResults(list);
+					return result;
+				});
 	}
 }

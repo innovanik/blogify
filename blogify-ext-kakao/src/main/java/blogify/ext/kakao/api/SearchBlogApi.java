@@ -17,7 +17,7 @@ public class SearchBlogApi {
 
 	public static final String BEAN_NAME = "kakaoSearchBlogApi";
 
-	private static final String BLOG = "/v2/search/blog";
+	private static final String BLOG = "/v2/search/blogg";
 
 	@Autowired
 	private KakaoClient client;

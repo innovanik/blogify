@@ -37,6 +37,12 @@ ext {
       /* janino */
       janino:                   "org.codehaus.janino:janino",
       
+      /* apache commons */
+      commons_text:             "org.apache.commons:commons-text:${versions.commons_text}",
+      
+      /* test */
+      reactor_test:             "io.projectreactor:reactor-test",
+      
       /* spring framework */
       web:                      "org.springframework:spring-web",
       webflux:                  "org.springframework:spring-webflux",
@@ -48,10 +54,12 @@ ext {
       starter_json:             "org.springframework.boot:spring-boot-starter-json",
       starter_validation:       "org.springframework.boot:spring-boot-starter-validation",
       starter_webflux:          "org.springframework.boot:spring-boot-starter-webflux",
+      starter_jpa:              "org.springframework.boot:spring-boot-starter-data-jpa",
+      starter_r2dbc:            "org.springframework.boot:spring-boot-starter-data-r2dbc",
       data_commons:             "org.springframework.data:spring-data-commons",
       
-      /* apache commons */
-      commons_text:             "org.apache.commons:commons-text:${versions.commons_text}",
+      /* embedded */
+      r2dbc_h2:              "io.r2dbc:r2dbc-h2",
    ]
    
 }

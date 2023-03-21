@@ -64,8 +64,8 @@
 	<!-- Set pattern -->
 	<property name="LOG_PREFIX_PATTERN" value="${LOG_PREFIX_PATTERN:-%8X{id:-${PID:-}}}"/>
 	<property name="LOG_LOGGER_PATTERN" value="${LOG_LOGGER_PATTERN:-%-40.40logger{39}}"/>
-	<property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %highlight(${LOG_LEVEL_PATTERN:-%5p}) %clr([${LOG_THREAD_PATTERN:-%15.15t}]){magenta} %clr(${LOG_LOGGER_PATTERN}){cyan} %clr(---){blue} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
-	<property name="FILE_LOG_PATTERN" value="${FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} [${LOG_THREAD_PATTERN:-%t}] ${LOG_LOGGER_PATTERN} --- %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+	<property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %highlight(${LOG_LEVEL_PATTERN:-%5p}) %clr([${LOG_THREAD_PATTERN:-%15.15t}]){magenta} %clr(${LOG_MDC_PATTERN:- }){red} %clr(${LOG_LOGGER_PATTERN}){cyan} %clr(---){blue} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+	<property name="FILE_LOG_PATTERN" value="${FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} [${LOG_THREAD_PATTERN:-%t}] ${LOG_MDC_PATTERN:- } ${LOG_LOGGER_PATTERN} --- %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 	<!-- Set log type -->
 	<property name="CONSOLE_LOG" value="${CONSOLE_LOG:-true}"/>
 	<property name="FILE_LOG" value="${FILE_LOG:-false}"/>
