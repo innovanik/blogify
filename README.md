@@ -16,41 +16,41 @@ java -jar api.jar
 <br/>
 
 ## API
-### [GET] /search/blog (블로그 검색)
-> #### 요청
-> ##### Parameters
-> |이름|형식|설명|기본값|필수|
-> |-|:-:|-|-|:-:|
-> |query|String|검색어||O|
-> |sort|Integer|정렬 - accuracy(정확도순) 또는 recency(최신순)|accuracy||
-> |page|Integer|페이지 번호|1||
-> |size|Integer|페이지의 목록 수|10||
-> #### 응답
-> ##### Body
-> |이름|형식|설명|
-> |-|:-:|-|
-> |results|List|결과 목록|
-> |└ title|String|제목|
-> |└ content|String|내용|
-> |└ url|String|링크 주소|
-> |└ name|String|블로그명|
-> |└ date|String|작성시간|
-> |server|String|데이터 연동 서버 (Kakao 또는 Naver)|
-> |query|String|검색어|
-> |total|Integer|결과 수|
-> |sort|String|요청 정렬|
-> |page|Integer|요청 페이지 번호|
-> |size|Integer|요청 페이지의 목록 수|
-<br/>
-
-### [GET] /search/word/popular (인기 검색어 목록)<br/>
-> #### 응답
-> ##### Body
-> |이름|형식|설명|
-> |-|:-:|-|
-> |results|List|결과 목록|
-> |└ keyword|String|검색 키워드|
-> |└ count|Integer|검색 수|
+>### [GET] /search/blog (블로그 검색)
+>> #### 요청
+>> ##### Parameters
+>> |이름|형식|설명|기본값|필수|
+>> |-|:-:|-|-|:-:|
+>> |query|String|검색어||O|
+>> |sort|Integer|정렬 - accuracy(정확도순) 또는 recency(최신순)|accuracy||
+>> |page|Integer|페이지 번호|1||
+>> |size|Integer|페이지의 목록 수|10||
+>> #### 응답
+>> ##### Body
+>> |이름|형식|설명|
+>> |-|:-:|-|
+>> |results|List|결과 목록|
+>> |└ title|String|제목|
+>> |└ content|String|내용|
+>> |└ url|String|링크 주소|
+>> |└ name|String|블로그명|
+>> |└ date|String|작성시간|
+>> |server|String|데이터 연동 서버 (Kakao 또는 Naver)|
+>> |query|String|검색어|
+>> |total|Integer|결과 수|
+>> |sort|String|요청 정렬|
+>> |page|Integer|요청 페이지 번호|
+>> |size|Integer|요청 페이지의 목록 수|
+>
+>
+>### [GET] /search/word/popular (인기 검색어 목록)<br/>
+>> #### 응답
+>> ##### Body
+>> |이름|형식|설명|
+>> |-|:-:|-|
+>> |results|List|결과 목록|
+>> |└ keyword|String|검색 키워드|
+>> |└ count|Integer|검색 수|
 <br/>
 
 ## 모듈 구성
