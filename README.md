@@ -64,3 +64,5 @@ java -jar api.jar
 > Naver 연동 Client
 > ### blogify-res-r2dbc
 > DB Resource (JPA)
+> ### blogify-app-api
+> API Application
