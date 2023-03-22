@@ -1,7 +1,6 @@
 package blogify.res.r2dbc.entity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,9 +40,4 @@ public class BlogSearchWordEntity implements Serializable {
 	 * 횟수
 	 */
 	private Long cnt;
-
-	/**
-	 * 등록 일시
-	 */
-	private LocalDateTime regDttm;
 }

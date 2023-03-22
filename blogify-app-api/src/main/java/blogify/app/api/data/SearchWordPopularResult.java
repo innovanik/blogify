@@ -6,9 +6,11 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import blogify.core.context.AbstractResult;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
@@ -23,6 +25,8 @@ public class SearchWordPopularResult extends AbstractResult {
 
 	@Builder
 	@Data
+	@NoArgsConstructor
+	@AllArgsConstructor
 	public static class Result {
 
 		private String keyword;

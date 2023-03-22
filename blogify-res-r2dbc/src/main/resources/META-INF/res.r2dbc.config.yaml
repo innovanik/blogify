@@ -10,6 +10,8 @@ spring:
     name: blogdb
     username: sa
     password: 
+    pool:
+      max-size: 100
   sql:
     init:
       schema-locations:

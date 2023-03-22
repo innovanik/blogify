@@ -88,7 +88,10 @@ public class SearchService {
 													.word(data.getQuery())
 													.cnt(0L)
 													.build())
-				.doOnNext(entity -> entity.setCnt(entity.getCnt() + 1L))
+				.last()
+				.doOnNext(entity -> {
+					entity.setCnt(entity.getCnt() + 1L);
+				})
 				.flatMap(blogSearchWordRepository::save)
 				.then();
 	}
