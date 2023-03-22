@@ -16,7 +16,8 @@ java -jar api.jar
 <br/>
 
 ## API
->### [GET] /search/blog (블로그 검색)
+URI : http://localhost:8080
+> ### [GET] /search/blog (블로그 검색)
 >> #### 요청
 >> ##### Parameters
 >> |이름|형식|설명|기본값|필수|
@@ -43,7 +44,7 @@ java -jar api.jar
 >> |size|Integer|요청 페이지의 목록 수|
 >
 >
->### [GET] /search/word/popular (인기 검색어 목록)<br/>
+> ### [GET] /search/word/popular (인기 검색어 목록)<br/>
 >> #### 응답
 >> ##### Body
 >> |이름|형식|설명|
