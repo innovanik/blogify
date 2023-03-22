@@ -6,16 +6,7 @@ java -jar api.jar
 ```
 <br/>
 
-## Library
-|명칭|버전|사용 이유|비고|
-|-|-|-|-|
-|Spring Boot|2.7.9||Aop, WebFlux, Validation, Reactor Netty, JPA, Json, R2dbc|
-|Lombok|1.18.26|소스 코드 반복 작업(getter, setter 등) 자동화||
-|Janino|3.1.9|logback 의 조건부 처리 기능||
-|Apache Commons Text|1.10.0|문자열 관련 처리||
-<br/>
-
-## API
+## API 명세
 URI : http://localhost:8080
 > ### [GET] /search/blog (블로그 검색)
 >> #### 요청
@@ -54,16 +45,21 @@ URI : http://localhost:8080
 >> |└ count|Integer|검색 수|
 <br/>
 
+## Library
+|명칭|버전|사용 이유|비고|
+|-|-|-|-|
+|Spring Boot|2.7.9||Aop, WebFlux, Validation, Reactor Netty, JPA, Json, R2dbc|
+|Lombok|1.18.26|소스 코드 반복 작업(getter, setter 등) 자동화||
+|Janino|3.1.9|logback 의 조건부 처리 기능||
+|Apache Commons Text|1.10.0|문자열 관련 처리||
+<br/>
+
 ## 모듈 구성
-> ### blogify-core
-> Application 기본 공통 기능
-> ### blogify-ext
-> 외부 연동 기본 공통 기능
-> ### blogify-ext-kakao
-> Kakao 연동 Client
-> ### blogify-ext-naver
-> Naver 연동 Client
-> ### blogify-res-r2dbc
-> DB Resource (JPA)
-> ### blogify-app-api
-> API Application
+|명칭|형식|설명|참조|
+|-|-|-|-|
+|blogify-core|jar|Application 기본 공통 기능||
+|blogify-ext|jar|외부 연동 기본 공통 기능||
+|blogify-ext-kakao|jar|Kakao 연동 Client|blogify-ext|
+|blogify-ext-naver|jar|Naver 연동 Client|blogify-ext|
+|blogify-res-r2dbc|jar|DB Resource (JPA)||
+|blogify-app-api|bootJar|API Application|blogify-core<br/>blogify-ext-kakao<br/>blogify-ext-naver<br/>blogify-res-r2dbc|
