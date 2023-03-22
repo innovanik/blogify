@@ -98,7 +98,7 @@ public class SearchService {
 
 	public Mono<SearchWordPopularResult> wordPopular() {
 		return blogSearchWordRepository
-				.findTop10ByOrderByCntDesc()
+				.findGroupByTop10ByOrderByCntDesc()
 				.map(entity -> SearchWordPopularResult.Result.builder().keyword(entity.getWord()).count(entity.getCnt()).build())
 				.collectList()
 				.map(list -> {

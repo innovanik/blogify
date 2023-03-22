@@ -11,7 +11,7 @@ spring:
     username: sa
     password: 
     pool:
-      max-size: 100
+      max-size: 50
   sql:
     init:
       schema-locations:
